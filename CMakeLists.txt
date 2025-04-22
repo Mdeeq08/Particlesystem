@@ -62,7 +62,7 @@ target_sources(rendering
         include/rendering/window.h
     PRIVATE
         src/rendering/window.cpp
- "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp")
+ "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp" "include/particlesystem/pulseemitter.h" "src/particlesystem/pulseemitter.cpp")
 target_link_libraries(rendering 
   PUBLIC 
     glm::glm
@@ -87,7 +87,7 @@ target_sources(example
         include/example/randomsystem.h
     PRIVATE
         src/example/randomsystem.cpp
- "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp")
+ "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp" "include/particlesystem/pulseemitter.h" "src/particlesystem/pulseemitter.cpp")
 target_link_libraries(example
   PUBLIC
     glm::glm
@@ -110,7 +110,7 @@ target_sources(particlesystem
     PRIVATE
         src/particlesystem/particlesystem.cpp
         # ADD PATICLE SYSTEM SOURCE FILES HERE
- "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp")
+ "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp" "include/particlesystem/pulseemitter.h" "src/particlesystem/pulseemitter.cpp")
 target_link_libraries(particlesystem 
   PUBLIC
     glm::glm
@@ -127,7 +127,7 @@ target_sources(unittest
         unittest/randomsystem-tests.cpp
         unittest/particlesystem-tests.cpp
         # ADD MORE TEST FILES HERE
- "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp")
+ "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp" "include/particlesystem/pulseemitter.h" "src/particlesystem/pulseemitter.cpp")
 target_link_libraries(unittest 
   PUBLIC 
     Catch2::Catch2WithMain 
@@ -143,7 +143,7 @@ add_executable(application ${APP_SOURCE_FILES} ${APP_HEADER_FILES})
 target_sources(application
     PRIVATE
         src/application/main.cpp
- "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp")
+ "src/particlesystem/emitter.cpp"  "include/particlesystem/emitter.h" "include/particlesystem/Tracy.hpp" "src/particlesystem/particle.cpp" "include/particlesystem/particle.h" "include/particlesystem/effect.h" "src/particlesystem/effect.cpp" "include/particlesystem/pulseemitter.h" "src/particlesystem/pulseemitter.cpp")
 target_link_libraries(application
   PRIVATE 
     rendering::rendering

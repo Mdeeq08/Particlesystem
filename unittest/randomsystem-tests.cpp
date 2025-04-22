@@ -1,6 +1,9 @@
+#define CATCH_CONFIG_MAIN
 #include <catch2/catch_all.hpp>
 #include <glm/glm.hpp>
-
+#include "particlesystem/particle.h"
+#include "particlesystem/emitter.h"
+#include "particlesystem/pulseemitter.h"
 #include <example/randomsystem.h>
 
 /* Unit tests using the catch2 framework
@@ -173,5 +176,70 @@ TEST_CASE("Benchmark system update", "[.benchmark]") {
     {
         example::RandomSystem system4{100'000};
         BENCHMARK("100'000 particles") { return system4.update(0.1, 1.0); };
+    }
+}
+// my own test to check particle lifetime
+TEST_CASE("Particle::alive() logic", "[Particle]") {
+
+    SECTION("Particle is alive under normal conditions") {
+        Particle p({0.0f, 0.0f}, {0.0f, 0.0f}, 1.0f, {1, 1, 1, 1});
+        p.lifetime = 2.0f;
+        REQUIRE(p.alive() == true);
+    }
+
+    SECTION("Particle with lifetime >= 5 is dead") {
+        Particle p({0.0f, 0.0f}, {0.0f, 0.0f}, 1.0f, {1, 1, 1, 1});
+        p.lifetime = 5.0f;
+        REQUIRE(p.alive() == false);
+    }
+
+    SECTION("Particle outside screen bounds is dead") {
+        Particle p({1.1f, 0.0f}, {0.0f, 0.0f}, 1.0f, {1, 1, 1, 1});
+        p.lifetime = 1.0f;
+        REQUIRE(p.alive() == false);
+
+        p.position = {0.0f, -1.5f};
+        REQUIRE(p.alive() == false);
+    }
+}
+
+TEST_CASE("PulseEmitter emits only on pulse interval", "[PulseEmitter]") {
+    // Setup
+    std::vector<Particle> particles;
+    glm::vec2 position{0.0f, 0.0f};
+    float radius = 1.0f;
+    float pulseDelay = 2.0f;
+    int amount = 10;
+
+    // PulseEmitter should extend Emitter and accept same constructor pattern
+    PulseEmitter emitter(position, radius, pulseDelay, amount);
+
+    SECTION("Before pulse delay: no particles are emitted") {
+        emitter.update(1.0f);  // update with dt < pulseDelay
+        emitter.createNewParticle(particles);
+        REQUIRE(particles.size() == 0);
+    }
+
+    SECTION("At pulse delay: particles are emitted") {
+        emitter.update(2.0f);  // exactly at threshold
+        emitter.createNewParticle(particles);
+        REQUIRE(particles.size() == amount);
+    }
+
+    SECTION("After pulse delay: only emits once per cycle") {
+        emitter.update(2.0f);
+        emitter.createNewParticle(particles);
+        REQUIRE(particles.size() == amount);
+
+        emitter.createNewParticle(particles);  // same cycle, should do nothing
+        REQUIRE(particles.size() == amount);
+
+        emitter.update(1.0f);
+        emitter.createNewParticle(particles);  // not enough time for next pulse
+        REQUIRE(particles.size() == amount);
+
+        emitter.update(1.0f);  // now total = 4s, second pulse triggered
+        emitter.createNewParticle(particles);
+        REQUIRE(particles.size() == amount * 2);
     }
 }

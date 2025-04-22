@@ -16,7 +16,7 @@ public:
 
     // kolla om en partickel ska finnas
     void update(float dt) {
-
+       // std::cout << "[DEBUG] Update frame - Total particles: " << particle.size() << std::endl;
         // lever fortfarande particeln?
         for (size_t i = 0; i < particle.size(); ++i) {
             if (!particle[i].alive()) {

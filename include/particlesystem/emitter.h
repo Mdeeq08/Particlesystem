@@ -20,23 +20,24 @@ public:
     // Destructor
     virtual ~Emitter() {}
 
-    // samma för alla emitters, tidsberoende.
-    //  dt = tiden som gått sedan förra omgången i loopen
-    bool update(float dt) {
+    virtual bool update(float dt) {
         time += dt;
         if (time > delay) {
-            time = 0;  // om går över ett, kör om och om igen
+            time = 0;
             return true;
         }
         return false;
     }
+
+    // In class Emitter
+ 
 
     virtual void createNewParticle(std::vector<Particle>& particle) = 0;
     glm::vec2 position;
     float radius;
     glm::vec4 color;
 
-private:
+protected:
     float time = 0, delay;
 };
 
