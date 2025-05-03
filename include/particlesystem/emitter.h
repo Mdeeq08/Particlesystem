@@ -99,8 +99,6 @@ public:
             int iSecret = rand() % 100 + 1;
             double randomAngle = (2.90 * 3.14 / 2) + (double)iSecret / 100;
 
-            std::cout << randomAngle << "\n";
-
             particle.push_back(
                 Particle({newPosition, 1}, {cos(randomAngle), sin(randomAngle)}, radius, color));
         }

@@ -16,7 +16,6 @@
 #include <glm/common.hpp>
 #include <glm/packing.hpp>
 
-// Dear students;
 // if you have found your way here, rest assured that understanding the rest of this file
 // is *not* required to complete the lab. This file contains a lot of implementation for
 // the rendering helper functionalities. Just have a look at the corresponding header file

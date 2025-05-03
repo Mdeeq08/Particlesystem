@@ -69,15 +69,6 @@ public:
         for (const Particle& p : particle) {
             window.drawPoint(p.position, p.radius, p.color);
         }
-
-        /*
-         for(Emitter* e : emitters ) {
-             window.drawPoint(e->position, e->radius, e->color);
-         }
-         for(Effects* e : effects ) {
-             window.drawPoint(e->position, e->radius, e->color);
-         }
-         */
     }
 
     std::vector<Particle> particle;  // skapar bara en typ av partiklar
