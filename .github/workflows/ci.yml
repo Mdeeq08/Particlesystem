@@ -41,7 +41,7 @@ jobs:
       if: runner.os == 'macOS'
       run: |
         brew install ninja 
-    
+      
     - name: Clone repo
       uses: actions/checkout@v3
       with: 
@@ -52,7 +52,7 @@ jobs:
       run: cmake -S particlesystem --preset ${{ matrix.preset }} -DCMAKE_BUILD_TYPE=Debug
 
     - name: Save Logs
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       if: ${{ failure() }}
       with:
         name: logs
