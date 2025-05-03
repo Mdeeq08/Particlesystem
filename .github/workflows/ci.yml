@@ -52,7 +52,7 @@ jobs:
       run: cmake -S particlesystem --preset ${{ matrix.preset }} -DCMAKE_BUILD_TYPE=Debug
 
     - name: Save Logs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       if: ${{ failure() }}
       with:
         name: logs
