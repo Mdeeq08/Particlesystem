@@ -1,13 +1,12 @@
-## TNM094 Labs - Particle System
+##  Particle System
 
-A minimal particle system acting as a foundation for the course labs.
-A small graphical interface is provided for visually editing parameters.
+A minimal particle system acting as a foundation a small graphical interface.
 
 #### Folder structure
 
 - /include: Header files
 - /src: Cpp files
-- /unittest: Examples of tests
+- /unittest: test to see that the particle system is working as intended
 
 #### Setup instructions
 Dependencies:
@@ -16,11 +15,11 @@ Dependencies:
  - C++20 Required, e.g. [Visual Studio](https://visualstudio.microsoft.com/downloads/)
 
 
-1)  Make a project folder for example 'tnm094'
+1)  Make a project folder 
 
 2)  In the project folder:
     * git clone https://github.com/microsoft/vcpkg 
-    * git clone https://gitlab.liu.se/tnm094-labs/particlesystem.git
+    * git clone https://github.com/Mdeeq08/Particlesystem.git
 
 2)  Open CMake (we recommend using the GUI here), enter the source path to the particlesystem git repo
     and select one of the "presets" ("MSVC 2022", "Xcode", "Ninja", "Unix Makefiles")
@@ -29,6 +28,5 @@ Dependencies:
 
 3)  Hit Generate and then Open Project to open the project in your IDE.
 
-4)  Build and run the 'application' executable.
+4)  Build and run the 'application' executable "main".
 
-5) 5) changes made for task  featureB
