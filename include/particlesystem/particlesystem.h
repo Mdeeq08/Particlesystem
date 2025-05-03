@@ -69,6 +69,7 @@ public:
         for (const Particle& p : particle) {
             window.drawPoint(p.position, p.radius, p.color);
         }
+
         /*
          for(Emitter* e : emitters ) {
              window.drawPoint(e->position, e->radius, e->color);

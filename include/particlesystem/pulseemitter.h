@@ -14,6 +14,8 @@ public:
 
    bool update(float dt) override;  
    void createNewParticle(std::vector<Particle>& particles) override;  
+   bool readyToEmit = false;
+
 
 private:  
    int amount;  

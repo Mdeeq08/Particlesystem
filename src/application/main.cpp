@@ -4,6 +4,8 @@
 #include "particlesystem/particle.h"
 #include "particlesystem/effect.h"
 #include "particlesystem/emitter.h"
+#include "particlesystem/pulseemitter.h"
+
 
 #include <cmath>
 #include <cstdlib>
@@ -27,7 +29,8 @@ int main(int, char**) try {
     float wind = 0.0f;
     float x = 0.0, y = 0.0;
     bool running = true;
-
+    int pulseAmount = 100;
+    float pulseDelay = 1.0f;
     // skapa partikelsystem utanför loop
 
     Particlesystem particleSystem{};
@@ -58,6 +61,8 @@ int main(int, char**) try {
             window.sliderFloat("Color3", color3, 0.0f, 1.0f);
             window.sliderFloat("X", x, -1.0, 1.0);
             window.sliderFloat("Y", y, -1.0, 1.0);
+            window.sliderInt("Pulse Amount", pulseAmount, 10, 500);
+            window.sliderFloat("Pulse Delay", pulseDelay, 0.1f, 5.0f);
             // Emitter
 
             // Directional
@@ -73,10 +78,16 @@ int main(int, char**) try {
                 particleSystem.emitters.push_back(
                     new Snowfall({x, y}, size, amount, color1, color2, color3));
             }
+            if (window.button("New Pulse emitter")) {
+                particleSystem.emitters.push_back(
+                    new PulseEmitter({x, y}, size, pulseDelay, pulseAmount));
+            }
 
             if (window.button("Reset all")) {
                 particleSystem.remove();
             }
+
+            
             // Effects
 
             // Gravity
